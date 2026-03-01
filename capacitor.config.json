@@ -1,0 +1,27 @@
+{
+    "appId": "com.bbts.sermonseminar2026",
+    "appName": "설교세미나 2026",
+    "webDir": "out",
+    "bundledWebRuntime": false,
+    "server": {
+        "androidScheme": "https"
+    },
+    "ios": {
+        "contentInset": "always",
+        "backgroundColor": "#0a1628"
+    },
+    "android": {
+        "backgroundColor": "#0a1628"
+    },
+    "plugins": {
+        "SplashScreen": {
+            "launchShowDuration": 2000,
+            "backgroundColor": "#0a1628",
+            "showSpinner": false
+        },
+        "StatusBar": {
+            "style": "DARK",
+            "backgroundColor": "#0a1628"
+        }
+    }
+}
