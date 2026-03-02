@@ -13,6 +13,15 @@ const firebaseConfig = {
     measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
+// 디버깅을 위한 안전한 로그 (배포 환경에서 변수 로드 확인용)
+if (typeof window !== 'undefined') {
+    console.log("Firebase Config Status:", {
+        hasApiKey: !!firebaseConfig.apiKey,
+        apiKeyPrefix: firebaseConfig.apiKey ? firebaseConfig.apiKey.substring(0, 5) : 'missing',
+        projectId: firebaseConfig.projectId || 'missing'
+    });
+}
+
 const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
 
 export const auth = getAuth(app);
