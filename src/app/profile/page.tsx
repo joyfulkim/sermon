@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import Header from '@/components/layout/Header';
 import { collection, query, where, getDocs, orderBy, Timestamp } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
-import { User, LogOut, CheckCircle2, Clock, Mail, Building, Settings, ChevronRight } from 'lucide-react';
+import { User, LogOut, CheckCircle2, Clock, Mail, Building, Settings, ChevronRight, Users } from 'lucide-react';
 
 interface Registration {
     id: string;
