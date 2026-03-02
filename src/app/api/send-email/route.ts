@@ -40,16 +40,20 @@ export async function POST(request: Request) {
                 html: `
                     <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #eee;">
                         <h2 style="color: #2563eb;">새로운 세미나 신청이 접수되었습니다</h2>
-                        <ul>
+                        <ul style="line-height: 1.8;">
                             <li><strong>이름:</strong> ${applicantInfo.name}</li>
+                            <li><strong>성별/연령:</strong> ${applicantInfo.genderAge || '미기재'}</li>
                             <li><strong>연락처:</strong> ${applicantInfo.phone}</li>
                             <li><strong>이메일:</strong> ${applicantInfo.email}</li>
-                            <li><strong>소속:</strong> ${applicantInfo.church}</li>
+                            <li><strong>소속/직분:</strong> ${applicantInfo.church}</li>
                             <li><strong>구분:</strong> ${applicantInfo.type === 'general' ? '일반' : '학생'}</li>
+                            <li><strong>영수증 발행:</strong> ${applicantInfo.needsReceipt === 'yes' ? '신청' : '안함'}</li>
+                            <li><strong>오시는 방법:</strong> ${applicantInfo.transportation === 'public' ? '대중교통' : applicantInfo.transportation === 'car' ? '자가용' : '도보'}</li>
+                            <li><strong>정보 취득:</strong> ${applicantInfo.source?.join(', ') || '없음'}</li>
                             <li><strong>입금자명:</strong> ${applicantInfo.depositorName}</li>
                             <li><strong>금액:</strong> ${applicantInfo.amount.toLocaleString()}원</li>
                         </ul>
-                        <p><a href="${process.env.NEXT_PUBLIC_BASE_URL || ''}/admin/applicants" style="display: inline-block; padding: 10px 20px; background: #2563eb; color: white; text-decoration: none; border-radius: 5px;">관리자 페이지에서 확인하기</a></p>
+                        <p><a href="${process.env.NEXT_PUBLIC_BASE_URL || 'https://sermon-five.vercel.app'}/admin/applicants" style="display: inline-block; padding: 10px 20px; background: #2563eb; color: white; text-decoration: none; border-radius: 5px;">관리자 페이지에서 확인하기</a></p>
                     </div>
                 `
             });

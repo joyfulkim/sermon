@@ -12,6 +12,7 @@ import * as XLSX from 'xlsx';
 interface Registration {
     id: string;
     name: string;
+    genderAge: string;
     phone: string;
     email: string;
     church: string;
@@ -19,6 +20,10 @@ interface Registration {
     depositorName: string;
     amount: number;
     status: string;
+    needsReceipt: string;
+    transportation: string;
+    source: string[];
+    privacyAgreed: boolean;
     createdAt: any;
 }
 
@@ -58,11 +63,15 @@ export default function AdminApplicantsPage() {
     const exportToExcel = () => {
         const worksheet = XLSX.utils.json_to_sheet(registrations.map(reg => ({
             '신청일': reg.createdAt?.toDate ? reg.createdAt.toDate().toLocaleString() : '',
-            '이름': reg.name,
+            '신청자 성함': reg.name,
+            '성별/연령대': reg.genderAge || '',
             '연락처': reg.phone,
             '이메일': reg.email,
-            '교회/소속': reg.church,
-            '구분': reg.type === 'general' ? '일반' : '학생',
+            '교회/직분': reg.church,
+            '참석유형': reg.type === 'general' ? '일반' : '학생',
+            '영수증필요': reg.needsReceipt === 'yes' ? '예' : '아니요',
+            '오시는방법': reg.transportation === 'public' ? '대중교통' : reg.transportation === 'car' ? '자가용' : '도보',
+            '정보습득경로': reg.source ? reg.source.join(', ') : '',
             '입금자명': reg.depositorName,
             '금액': reg.amount,
             '상태': reg.status
@@ -135,10 +144,14 @@ export default function AdminApplicantsPage() {
                             </div>
 
                             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', fontSize: '13px', color: 'var(--text-secondary)' }}>
-                                <div><strong>교회:</strong> {reg.church}</div>
+                                <div style={{ gridColumn: 'span 2' }}><strong>성별/연령:</strong> {reg.genderAge}</div>
+                                <div style={{ gridColumn: 'span 2' }}><strong>교회/직분:</strong> {reg.church}</div>
                                 <div><strong>입금자:</strong> {reg.depositorName}</div>
+                                <div><strong>영수증:</strong> {reg.needsReceipt === 'yes' ? '필요' : '미필요'}</div>
+                                <div style={{ gridColumn: 'span 2' }}><strong>오시는법:</strong> {reg.transportation === 'public' ? '대중교통' : reg.transportation === 'car' ? '자가용' : '도보'}</div>
                                 <div style={{ gridColumn: 'span 2' }}><strong>연락처:</strong> {reg.phone}</div>
                                 <div style={{ gridColumn: 'span 2' }}><strong>이메일:</strong> {reg.email}</div>
+                                <div style={{ gridColumn: 'span 2' }}><strong>경로:</strong> {reg.source?.join(', ')}</div>
                                 <div style={{ gridColumn: 'span 2', fontSize: '11px', color: 'var(--text-tertiary)', marginTop: '4px' }}>
                                     신청일: {reg.createdAt?.toDate ? reg.createdAt.toDate().toLocaleString() : 'N/A'}
                                 </div>
