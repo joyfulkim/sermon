@@ -35,13 +35,32 @@ export default function RegisterPage() {
         e.preventDefault();
         setLoading(true);
         try {
-            await addDoc(collection(db, 'registrations'), {
+            const docRef = await addDoc(collection(db, 'registrations'), {
                 ...formData,
                 userId: user?.uid || null,
                 status: 'pending',
                 amount: formData.type === 'general' ? 80000 : 30000,
                 createdAt: serverTimestamp(),
             });
+
+            // 이메일 발송 요청
+            try {
+                await fetch('/api/send-email', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        applicantInfo: {
+                            ...formData,
+                            amount: formData.type === 'general' ? 80000 : 30000
+                        },
+                        adminEmail: 'joyfulkim@gmail.com' // 관리자에게 알림
+                    }),
+                });
+            } catch (emailError) {
+                console.error("Failed to send notification emails:", emailError);
+                // 이메일 실패해도 가입은 완료된 것으로 처리 (사전 등록은 성공했으므로)
+            }
+
             setSuccess(true);
             window.scrollTo(0, 0);
         } catch {
@@ -66,8 +85,8 @@ export default function RegisterPage() {
 
                     <div className="card-glass" style={{ width: '100%', padding: '24px', textAlign: 'left', marginBottom: '40px', background: 'rgba(255,255,255,0.03)' }}>
                         <p style={{ fontSize: '13px', color: 'var(--text-tertiary)', fontWeight: 600, marginBottom: '8px' }}>입금 안내</p>
-                        <p style={{ fontSize: '18px', fontWeight: 800, color: 'var(--gold)', marginBottom: '8px', letterSpacing: '0.5px' }}>SC제일은행 310-20-008298</p>
-                        <p style={{ fontSize: '14px', color: 'var(--text-secondary)' }}>예금주: 재단법인한국성서침례교회</p>
+                        <p style={{ fontSize: '18px', fontWeight: 800, color: 'var(--gold)', marginBottom: '8px', letterSpacing: '0.5px' }}>카카오뱅크 3333-14-6097669</p>
+                        <p style={{ fontSize: '14px', color: 'var(--text-secondary)' }}>예금주: 최정기</p>
                         <div style={{ width: '100%', height: '1px', background: 'rgba(255,255,255,0.1)', margin: '16px 0' }} />
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                             <span style={{ fontSize: '14px', color: 'var(--text-tertiary)' }}>입금하실 금액</span>

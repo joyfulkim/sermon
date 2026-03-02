@@ -37,6 +37,11 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
+// 관리자 권한을 부여할 이메일 목록
+const ADMIN_EMAILS = [
+    'joyfulkim@gmail.com', // 사용자 요청에 따라 관리자로 등록할 이메을
+];
+
 export function AuthProvider({ children }: { children: ReactNode }) {
     const [user, setUser] = useState<User | null>(null);
     const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
@@ -66,6 +71,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const signup = async (email: string, password: string, additionalData: { displayName: string, church: string, role: string }) => {
         const result = await createUserWithEmailAndPassword(auth, email, password);
         await updateProfile(result.user, { displayName: additionalData.displayName });
+        const isAdmin = ADMIN_EMAILS.includes(email);
         const profile: UserProfile = {
             uid: result.user.uid,
             email,
@@ -73,7 +79,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             photoURL: null,
             church: additionalData.church,
             role: additionalData.role,
-            isAdmin: false,
+            isAdmin: isAdmin,
             createdAt: serverTimestamp(),
         };
         await setDoc(doc(db, 'users', result.user.uid), profile);
@@ -90,6 +96,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             const docSnap = await getDoc(docRef);
 
             if (!docSnap.exists()) {
+                const isAdmin = user.email ? ADMIN_EMAILS.includes(user.email) : false;
                 const profile: UserProfile = {
                     uid: user.uid,
                     email: user.email,
@@ -97,13 +104,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
                     photoURL: user.photoURL,
                     church: '',
                     role: '일반',
-                    isAdmin: false,
+                    isAdmin: isAdmin,
                     createdAt: serverTimestamp(),
                 };
                 await setDoc(docRef, profile);
                 setUserProfile(profile);
             } else {
-                setUserProfile(docSnap.data() as UserProfile);
+                // 이미 존재하는 유저인 경우, 관리자 목록에 포함되어 있다면 isAdmin 플래그 업데이트
+                const existingData = docSnap.data() as UserProfile;
+                if (user.email && ADMIN_EMAILS.includes(user.email) && !existingData.isAdmin) {
+                    await setDoc(docRef, { ...existingData, isAdmin: true }, { merge: true });
+                    setUserProfile({ ...existingData, isAdmin: true });
+                } else {
+                    setUserProfile(existingData);
+                }
             }
         } catch (error: any) {
             console.error("Google Login Error:", error);

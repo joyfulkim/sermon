@@ -150,6 +150,18 @@ export default function ProfilePage() {
 
                 {/* Actions */}
                 <div className="fade-in-up fade-delay-3" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                    {userProfile?.isAdmin && (
+                        <button
+                            onClick={() => router.push('/admin/applicants')}
+                            style={{ width: '100%', padding: '16px 20px', background: 'rgba(37,99,235,0.15)', border: '1px solid rgba(37,99,235,0.3)', borderRadius: '16px', color: 'var(--neon-blue)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '14px', fontWeight: 800, cursor: 'pointer', transition: 'var(--transition)' }}
+                        >
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                                <Users size={18} />
+                                신청자 명단 관리 (관리자)
+                            </div>
+                            <ChevronRight size={18} />
+                        </button>
+                    )}
                     <button style={{ width: '100%', padding: '16px 20px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '16px', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '14px', fontWeight: 600, cursor: 'pointer', transition: 'var(--transition)' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                             <Settings size={18} color="var(--text-tertiary)" />
