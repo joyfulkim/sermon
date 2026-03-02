@@ -23,7 +23,14 @@ export default function Header({ title, showBack = false, showProfile = true, ri
                     <ChevronLeft size={24} />
                 </button>
             ) : (
-                <span className="header-logo">설교세미나<br />2026</span>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <img src="/logo.png" alt="Logo" style={{ height: '28px', width: 'auto' }} onError={(e) => {
+                        (e.target as HTMLImageElement).style.display = 'none';
+                        const next = (e.target as HTMLImageElement).nextElementSibling as HTMLElement;
+                        if (next) next.style.display = 'block';
+                    }} />
+                    <span className="header-logo" style={{ display: 'none' }}>설교세미나<br />2026</span>
+                </div>
             )}
 
             {title && (

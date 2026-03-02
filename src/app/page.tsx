@@ -26,18 +26,43 @@ export default function HomePage() {
 
         {/* Top nav area in hero */}
         <div style={{ position: 'absolute', top: 'calc(env(safe-area-inset-top, 20px) + 16px)', left: '20px', right: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <div style={{ width: '24px', height: '24px', borderRadius: '6px', background: 'linear-gradient(135deg, #3b82f6, #06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <span style={{ fontSize: '12px', color: 'white', fontWeight: 800 }}>b</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <img src="/logo.png" alt="Logo" style={{ height: '32px', width: 'auto' }} onError={(e) => {
+              // Fallback if logo.png is not found yet
+              (e.target as HTMLImageElement).style.display = 'none';
+              const next = (e.target as HTMLImageElement).nextElementSibling as HTMLElement;
+              if (next) next.style.display = 'flex';
+            }} />
+            <div style={{ display: 'none', alignItems: 'center', gap: '8px' }}>
+              <div style={{ width: '24px', height: '24px', borderRadius: '6px', background: 'linear-gradient(135deg, #3b82f6, #06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <span style={{ fontSize: '12px', color: 'white', fontWeight: 800 }}>b</span>
+              </div>
+              <span style={{ fontSize: '13px', fontWeight: 700, color: 'rgba(255,255,255,0.8)', letterSpacing: '0.5px' }}>성서침례대학원대학교</span>
             </div>
-            <span style={{ fontSize: '13px', fontWeight: 700, color: 'rgba(255,255,255,0.8)', letterSpacing: '0.5px' }}>성서침례대학원대학교</span>
           </div>
-          {mounted && (
-            <Link href={user ? '/profile' : '/login'} style={{ background: 'rgba(255,255,255,0.1)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255,255,255,0.1)', padding: '6px 12px', borderRadius: '20px', color: 'rgba(255,255,255,0.9)', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12px', fontWeight: 600 }}>
-              <User size={14} />
-              <span>{user ? (user.displayName?.split(' ')[0] ?? '내설정') : '로그인'}</span>
-            </Link>
-          )}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            {mounted && userProfile?.isAdmin && (
+              <Link href="/admin/applicants" style={{
+                background: 'rgba(37,99,235,0.3)',
+                backdropFilter: 'blur(10px)',
+                border: '1px solid rgba(59,130,246,0.3)',
+                padding: '6px 12px',
+                borderRadius: '20px',
+                color: 'white',
+                fontSize: '11px',
+                fontWeight: 800,
+                textDecoration: 'none'
+              }}>
+                관리자 모드
+              </Link>
+            )}
+            {mounted && (
+              <Link href={user ? '/profile' : '/login'} style={{ background: 'rgba(255,255,255,0.1)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255,255,255,0.1)', padding: '6px 12px', borderRadius: '20px', color: 'rgba(255,255,255,0.9)', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12px', fontWeight: 600 }}>
+                <User size={14} />
+                <span>{user ? (userProfile?.displayName || user.displayName?.split(' ')[0] ?? '내설정') : '로그인'}</span>
+              </Link>
+            )}
+          </div>
         </div>
 
         {/* Hero Content */}

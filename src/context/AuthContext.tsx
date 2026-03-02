@@ -53,8 +53,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             if (firebaseUser) {
                 const docRef = doc(db, 'users', firebaseUser.uid);
                 const docSnap = await getDoc(docRef);
+
                 if (docSnap.exists()) {
-                    setUserProfile(docSnap.data() as UserProfile);
+                    const profileData = docSnap.data() as UserProfile;
+                    const shouldBeAdmin = firebaseUser.email ? ADMIN_EMAILS.includes(firebaseUser.email) : false;
+
+                    if (shouldBeAdmin && !profileData.isAdmin) {
+                        // 유저가 화이트리스트에 있고 아직 어드민이 아님 -> 업데이트
+                        const updatedProfile = { ...profileData, isAdmin: true };
+                        await setDoc(docRef, { isAdmin: true }, { merge: true });
+                        setUserProfile(updatedProfile);
+                    } else {
+                        setUserProfile(profileData);
+                    }
                 }
             } else {
                 setUserProfile(null);
