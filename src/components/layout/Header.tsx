@@ -30,10 +30,21 @@ export default function Header({ title, showBack = false, showProfile = true, ri
                 <h1 className="header-title">{title}</h1>
             )}
 
-            <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: '16px' }}>
+            <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: '12px' }}>
                 {userProfile?.isAdmin && (
-                    <Link href="/admin/applicants" style={{ color: 'var(--white-70)', display: 'flex' }}>
-                        <Settings size={22} className="rotate-on-hover" />
+                    <Link href="/admin/applicants" style={{
+                        background: 'rgba(37,99,235,0.2)',
+                        border: '1px solid rgba(37,99,235,0.4)',
+                        padding: '4px 8px',
+                        borderRadius: '8px',
+                        color: 'var(--neon-blue)',
+                        fontSize: '11px',
+                        fontWeight: 800,
+                        display: 'flex',
+                        alignItems: 'center',
+                        textDecoration: 'none'
+                    }}>
+                        관리자
                     </Link>
                 )}
 
