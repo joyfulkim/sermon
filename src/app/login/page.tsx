@@ -35,9 +35,17 @@ export default function LoginPage() {
         setLoading(true);
         try {
             await loginWithGoogle();
-            // signInWithRedirect: 페이지가 구글로 리다이렉트되므로 이 줄 이후 코드는 실행되지 않습니다
-        } catch {
-            setError('Google 로그인 준비 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
+            router.push('/');
+        } catch (error: any) {
+            console.error("Google Login Error in Page:", error);
+            if (error.code === 'auth/popup-closed-by-user') {
+                setError('로그인 팝업이 닫혔습니다. 다시 시도해 주세요.');
+            } else if (error.code === 'auth/unauthorized-domain') {
+                setError('인증되지 않은 도메인입니다. 관리자에게 문의하세요.');
+            } else {
+                setError('Google 로그인 준비 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
+            }
+        } finally {
             setLoading(false);
         }
     };
