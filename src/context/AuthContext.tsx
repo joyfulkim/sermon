@@ -8,7 +8,8 @@ import {
     createUserWithEmailAndPassword,
     signOut,
     GoogleAuthProvider,
-    signInWithPopup,
+    signInWithRedirect,
+    getRedirectResult,
     updateProfile,
 } from 'firebase/auth';
 import { doc, setDoc, getDoc, serverTimestamp } from 'firebase/firestore';
@@ -43,6 +44,30 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        // 구글 리다이렉트 로그인 결과 처리
+        getRedirectResult(auth).then(async (result) => {
+            if (result?.user) {
+                const docRef = doc(db, 'users', result.user.uid);
+                const docSnap = await getDoc(docRef);
+                if (!docSnap.exists()) {
+                    const profile: UserProfile = {
+                        uid: result.user.uid,
+                        email: result.user.email,
+                        displayName: result.user.displayName,
+                        photoURL: result.user.photoURL,
+                        church: '',
+                        role: '일반',
+                        isAdmin: false,
+                        createdAt: serverTimestamp(),
+                    };
+                    await setDoc(docRef, profile);
+                    setUserProfile(profile);
+                } else {
+                    setUserProfile(docSnap.data() as UserProfile);
+                }
+            }
+        }).catch(() => { /* ignore redirect errors */ });
+
         const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
             setUser(firebaseUser);
             if (firebaseUser) {
@@ -82,22 +107,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     const loginWithGoogle = async () => {
         const provider = new GoogleAuthProvider();
-        const result = await signInWithPopup(auth, provider);
-        const docRef = doc(db, 'users', result.user.uid);
-        const docSnap = await getDoc(docRef);
-        if (!docSnap.exists()) {
-            const profile: UserProfile = {
-                uid: result.user.uid,
-                email: result.user.email,
-                displayName: result.user.displayName,
-                photoURL: result.user.photoURL,
-                church: '',
-                role: '일반',
-                isAdmin: false,
-                createdAt: serverTimestamp(),
-            };
-            await setDoc(docRef, profile);
-        }
+        await signInWithRedirect(auth, provider);
+        // 리다이렉트 후 페이지가 다시 로드될 때 useEffect에서 getRedirectResult가 처리됩니다
     };
 
     const logout = async () => {

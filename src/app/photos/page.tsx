@@ -14,14 +14,27 @@ interface Photo {
     createdAt: { seconds: number };
 }
 
-// Unsplash placeholders for testing photo album
+// 2025 설교세미나 Google Photos Album
 const DEMO_PHOTOS: Photo[] = [
-    { id: '1', url: 'https://images.unsplash.com/photo-1438232992991-995b7058bbb3?w=800&q=80', title: '설교 세미나 1일차 전경', createdAt: { seconds: 1748200000 } },
-    { id: '2', url: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80', title: '강의중인 아브라함 교수', createdAt: { seconds: 1748100000 } },
-    { id: '3', url: 'https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?w=800&q=80', title: '세미나 질의응답 시간', createdAt: { seconds: 1748000000 } },
-    { id: '4', url: 'https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=800&q=80', title: '참석자 토론 및 교제', createdAt: { seconds: 1747900000 } },
-    { id: '5', url: 'https://images.unsplash.com/photo-1475721025535-915097b2e8a1?w=800&q=80', title: '단체 기념 사진', createdAt: { seconds: 1747800000 } },
-    { id: '6', url: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800&q=80', title: '수료식 및 파송', createdAt: { seconds: 1747700000 } },
+    { id: '1', url: 'https://lh3.googleusercontent.com/pw/AP1GczOrB_72STE26f6L4BXzRvEOnTVJg8Sx9qQDmprxI27U8bVQC7xUFC7K-54cD1piFxlfihjS23ogxEX6uB40t9O_mQTF2721KK5_OQH0htC-8shalzxPj0cCo0cojQHpKL1pXOHk4oUdBNupPb0P2RAS6Q=w1443-h962-s-no-gm', title: '2025 설교세미나', createdAt: { seconds: 1749254400 } },
+    { id: '2', url: 'https://lh3.googleusercontent.com/pw/AP1GczOabQZ0afBXKkxUlC58hrmu7JE24zqQeLAy3vs1WrOmXs4lVA0QxeVgIirn8te6IXo5bQikIH8qkpOf3cuyRIgvtbHt5PZYGAfVtredRC5RAoiEZY1YoGh1tdU36yZRxzex18VJPy1jfK1FZ1ChloKQeQ=w1443-h962-s-no-gm', title: '2025 설교세미나', createdAt: { seconds: 1749254401 } },
+    { id: '3', url: 'https://lh3.googleusercontent.com/pw/AP1GczPANiuJMwzQCxVJJfGiZsukliGAbTnxKPTHkm2lMNGIqUedolFXV94r7yeKFlHy0eCvJwtglZi0epQp3I8RuYfppZCA0P-xurcs89k8EZkxysKexTZikXNd6ol20DclHIq1I6t74a82LE3JyJ6lQERbPA=w641-h962-s-no-gm', title: '2025 설교세미나', createdAt: { seconds: 1749254402 } },
+    { id: '4', url: 'https://lh3.googleusercontent.com/pw/AP1GczNVhBZ5D7K18khO31yWULHkkmGnR9GDIPtMb3B4kdrq8b6jFOTK9pujW4QHLSNeSwmR-f7ANShibGEUg-WHKOKTMFa6HMI5khDw02CwUixZrtdq5F9iuBogSLDYtRbcSU75-9eLMsiC5Ls57xXnBmEtUw=w641-h962-s-no-gm', title: '2025 설교세미나', createdAt: { seconds: 1749254403 } },
+    { id: '5', url: 'https://lh3.googleusercontent.com/pw/AP1GczNh_syhSAIjyEktkebfJWYprSIa5ePH4S0cT0TWwm0W7gpZd47d2Hhl6mZr425rTmbmX-IE4iCQyc_YRasQMLhdNoIlMc_aBn7YnNMiF6R2o4zQ9_S6-gvIaXt_cg3-_YFAqfC_jtVXysgvyOuFW6GyHg=w1443-h962-s-no-gm', title: '2025 설교세미나', createdAt: { seconds: 1749254404 } },
+    { id: '6', url: 'https://lh3.googleusercontent.com/pw/AP1GczMvRBCBfI2POHHdYmPIqs_yIEZNK3Fg-XwXWMN9zjikaSCTFL5jamTusVSamTg50jq-bAgJimpcH2scVwzGXmDO1zcU_pV_PzS6H6576VeBOVLwi5L5bDlQhyAml007QKddsNxubLNa-c8Dlx6TCssNVQ=w1443-h962-s-no-gm', title: '2025 설교세미나', createdAt: { seconds: 1749254405 } },
+    { id: '7', url: 'https://lh3.googleusercontent.com/pw/AP1GczOjKktxRxCML70f47NjczTROe6ScskLtpbYCYIAKTMofaShu15Gg9188sISSm7ycuVdt7VZhPjGU6weLMT_Xnd--WofUBoJSOLYTZPzblICQQnVwKjooYUpqKEkR1tnwpGtb7HhagIr-a3XU16DPdKb4g=w1443-h962-s-no-gm', title: '2025 설교세미나', createdAt: { seconds: 1749254406 } },
+    { id: '8', url: 'https://lh3.googleusercontent.com/pw/AP1GczOs5tmRyDkanbc6jyEi0txJw5aLEIzkWJc4m_vq7EMwkrDtmPLwyDmYdVDi75hrbEIJYI5fSeObaX5ljm-X_Is0js8WiSMt93TIrI1ZzvCE6mVBEBZftq2-p_PK_W6izQuN3Tg3z_VttGerbrQF3rDV-Q=w1443-h962-s-no-gm', title: '2025 설교세미나', createdAt: { seconds: 1749254407 } },
+    { id: '9', url: 'https://lh3.googleusercontent.com/pw/AP1GczMDntVJvF-rrNSFN9hbAEcLb-hSMdv8RR3ygOmPj2JWAt7GiHbcv2I0ttsu206L1TiEYoZqrjKiKHHyOw8rMZIWw0Qws5_KDZNbiHDxHSx5QO5mXa8ORx4rMb9JU5w8MISdmFOm2RS_nMXXqzhNTXJdgg=w1443-h962-s-no-gm', title: '2025 설교세미나', createdAt: { seconds: 1749254408 } },
+    { id: '10', url: 'https://lh3.googleusercontent.com/pw/AP1GczMZ6N29da4piUrF_RXFaCj4u592Zt4UcU5BcGJJBzejdb8_faBBnIcawD-Dr8hZ_R9vCdu2GXliA_mmbpTcq1vufkU-Fu2jmnE7ttnptwVR7zXmStoecUA7dvnMGRpXVmdl4TOUkQWG1p2TOk9bIvSVeQ=w1443-h962-s-no-gm', title: '2025 설교세미나', createdAt: { seconds: 1749254409 } },
+    { id: '11', url: 'https://lh3.googleusercontent.com/pw/AP1GczOdFuIzJRb5FRVlcUKBbzYc0hfNKFyxp4YNNciTZzwLmTXgUMC2fxHJ67jSYQBmA8uOZ1uMR818rOlpjwh75mFMrR5KhyYiDYv7q-NEhR5iYvzcov7lXwHojcpqdaYIUOYNtTNtnIvdyCCIymZFnxDLcQ=w1443-h962-s-no-gm', title: '2025 설교세미나', createdAt: { seconds: 1749254410 } },
+    { id: '12', url: 'https://lh3.googleusercontent.com/pw/AP1GczM2lrttrrDToy4GruKDjpIlWSy9pdI3RaxKtxS3AMvNy57Dd_D8duivCYZ40lz31k0OBYCIM-3yG8kJz1UYdk7iSNsknuNELp6ZjJukcKaFL-VqaAH43HJcnWLh3bZBxYg-7jlm8Q-wua_KjTwxDhMLQw=w1443-h962-s-no-gm', title: '2025 설교세미나', createdAt: { seconds: 1749254411 } },
+    { id: '13', url: 'https://lh3.googleusercontent.com/pw/AP1GczNUFyWRo4zEiDE6TPVSpRG3oy38Bgsw6ni7jV-qffAYrssBBh1_0Sff__Ejrm1czpXYFMY0yjEmn9JcDI7aIukj-PwYsH2V3wUF-mQzMjVtcdl2TXKCIFgxz5Jr6eka_M2txocV_5h6k8wjHV4Ht1HbPA=w1443-h962-s-no-gm', title: '2025 설교세미나', createdAt: { seconds: 1749254412 } },
+    { id: '14', url: 'https://lh3.googleusercontent.com/pw/AP1GczMup03ogfplADlOdoVkZb33dzA5V2MK89SexKwFwgu9Bjh6RFBW53btSQnVXuentyZONwMTpIhtHwFF30PNUDtqS3jXmmREs7liuWIrbIIkjOFihwPRhjxkI9Ih92vYZ8A5q64uK8cfY7ZWzQ65Hqoq1Q=w1443-h962-s-no-gm', title: '2025 설교세미나', createdAt: { seconds: 1749254413 } },
+    { id: '15', url: 'https://lh3.googleusercontent.com/pw/AP1GczP32jvDSMoGjRw0ik3DQACDndiWXj3Pwqxk2uZsmUiYRXl2wEU_qaD1CXFqawi7fELJg4nypC9dIQj3CcuThWRoyVdDJcg_OsmaHwVe2eRdKCA6iSZ5977Ppt7-rSS1HMM40oNCtrcF3EHQA3jheIj-og=w1443-h962-s-no-gm', title: '2025 설교세미나', createdAt: { seconds: 1749254414 } },
+    { id: '16', url: 'https://lh3.googleusercontent.com/pw/AP1GczMhhRYPMmDUWBUiAAjL3j2Oh1nBuQ9KZ7cvpn9CkS9cOhMWjDhsUIU8oV27ugU-IxFcQ0Midu2vIC-x1fs1DbLrWs48ijmlT3owFaVI0HOslxL4TldHEoq-orQ_Zeujt7bKFhHqjHcBQ2mLYSuLzAbCWA=w1443-h962-s-no-gm', title: '2025 설교세미나', createdAt: { seconds: 1749254415 } },
+    { id: '17', url: 'https://lh3.googleusercontent.com/pw/AP1GczM5NUsZA19bOiD2yTZEY12n25wXwizyyB9RApX9lMF88NpJxiAhvnqiPf54DyLB8FJRMO4nzjxISbvtRh_EJSQde7YrD-unrnlZnl2KzVZcsECmzN6bnsI_1yrQGHmgSfXiRRImhoe2NyZDGuAVGAjp-g=w1443-h962-s-no-gm', title: '2025 설교세미나', createdAt: { seconds: 1749254416 } },
+    { id: '18', url: 'https://lh3.googleusercontent.com/pw/AP1GczMWG-NMPIQg9VWnp-UoBd6guss9MFGHsw7LqsQPf5mw8S5eGngRMGVaDQ5xaXJ_ZNnitPtDWbE9d5g9UlPIl4eJyU3UDWVGMV_AmAUZXZ-CIaFzbz2kHhVnmF1M2jsRSVP-4W3wDRedYqhD4CiMZvr0vw=w1443-h962-s-no-gm', title: '2025 설교세미나', createdAt: { seconds: 1749254417 } },
+    { id: '19', url: 'https://lh3.googleusercontent.com/pw/AP1GczM7473UC62XVpYupMiUJku-r1_v5vRtSx65Ix7jUOsozAewJ9gL9PeCDdId_H6E_4Jbr_o2_YjId-aS2UsiLSc6lXkv8RDPEERSznXN4Y_GJjmBg7P3pVlBmwL6qfQ8q65qdb7N0pafmUrLwp8GNA45HQ=w1443-h962-s-no-gm', title: '2025 설교세미나', createdAt: { seconds: 1749254418 } },
 ];
 
 export default function PhotosPage() {

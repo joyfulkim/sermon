@@ -35,10 +35,9 @@ export default function LoginPage() {
         setLoading(true);
         try {
             await loginWithGoogle();
-            router.push('/');
+            // signInWithRedirect: 페이지가 구글로 리다이렉트되므로 이 줄 이후 코드는 실행되지 않습니다
         } catch {
-            setError('Google 로그인에 실패했습니다.');
-        } finally {
+            setError('Google 로그인 준비 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
             setLoading(false);
         }
     };
