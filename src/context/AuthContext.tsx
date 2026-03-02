@@ -39,7 +39,7 @@ const AuthContext = createContext<AuthContextType | null>(null);
 
 // 관리자 권한을 부여할 이메일 목록
 const ADMIN_EMAILS = [
-    'joyfulkim@gmail.com', // 사용자 요청에 따라 관리자로 등록할 이메을
+    'kms@jfm.kr', // 사용자 요청에 따라 관리자로 등록할 이메일
 ];
 
 export function AuthProvider({ children }: { children: ReactNode }) {

@@ -53,7 +53,7 @@ export default function RegisterPage() {
                             ...formData,
                             amount: formData.type === 'general' ? 80000 : 30000
                         },
-                        adminEmail: 'joyfulkim@gmail.com' // 관리자에게 알림
+                        adminEmail: 'kms@jfm.kr' // 관리자에게 알림
                     }),
                 });
             } catch (emailError) {
