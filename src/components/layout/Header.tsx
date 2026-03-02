@@ -1,8 +1,9 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { ChevronLeft, User } from 'lucide-react';
+import { ChevronLeft, User, Settings } from 'lucide-react';
 import Link from 'next/link';
+import { useAuth } from '@/context/AuthContext';
 
 interface HeaderProps {
     title?: string;
@@ -13,6 +14,7 @@ interface HeaderProps {
 
 export default function Header({ title, showBack = false, showProfile = true, rightAction }: HeaderProps) {
     const router = useRouter();
+    const { userProfile } = useAuth();
 
     return (
         <header className="app-header">
@@ -28,11 +30,19 @@ export default function Header({ title, showBack = false, showProfile = true, ri
                 <h1 className="header-title">{title}</h1>
             )}
 
-            {rightAction ?? (showProfile && (
-                <Link href="/profile" style={{ color: 'var(--white-70)', marginLeft: 'auto' }}>
-                    <User size={22} />
-                </Link>
-            ))}
+            <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: '16px' }}>
+                {userProfile?.isAdmin && (
+                    <Link href="/admin/applicants" style={{ color: 'var(--white-70)', display: 'flex' }}>
+                        <Settings size={22} className="rotate-on-hover" />
+                    </Link>
+                )}
+
+                {rightAction ?? (showProfile && (
+                    <Link href="/profile" style={{ color: 'var(--white-70)' }}>
+                        <User size={22} />
+                    </Link>
+                ))}
+            </div>
         </header>
     );
 }
