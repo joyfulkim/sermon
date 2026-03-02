@@ -39,16 +39,15 @@ export default function Header({ title, showBack = false, showProfile = true, ri
 
             <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: '12px' }}>
                 {userProfile?.isAdmin && (
-                    <Link href="/admin/applicants" style={{
-                        background: 'rgba(37,99,235,0.2)',
-                        border: '1px solid rgba(37,99,235,0.4)',
-                        padding: '4px 8px',
-                        borderRadius: '8px',
-                        color: 'var(--neon-blue)',
+                    <Link href="/admin/applicants" style={{ 
+                        background: 'rgba(37,99,235,0.3)', 
+                        backdropFilter: 'blur(10px)',
+                        border: '1px solid rgba(59,130,246,0.3)',
+                        padding: '6px 12px',
+                        borderRadius: '20px',
+                        color: 'white', 
                         fontSize: '11px',
                         fontWeight: 800,
-                        display: 'flex',
-                        alignItems: 'center',
                         textDecoration: 'none'
                     }}>
                         관리자

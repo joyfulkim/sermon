@@ -15,7 +15,7 @@ const quickLinks = [
 ];
 
 export default function HomePage() {
-  const { user } = useAuth();
+  const { user, userProfile } = useAuth();
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
@@ -59,7 +59,7 @@ export default function HomePage() {
             {mounted && (
               <Link href={user ? '/profile' : '/login'} style={{ background: 'rgba(255,255,255,0.1)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255,255,255,0.1)', padding: '6px 12px', borderRadius: '20px', color: 'rgba(255,255,255,0.9)', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12px', fontWeight: 600 }}>
                 <User size={14} />
-                <span>{user ? (userProfile?.displayName || user.displayName?.split(' ')[0] ?? '내설정') : '로그인'}</span>
+                <span>{user ? ((userProfile?.displayName || user.displayName)?.split(' ')[0] ?? '내설정') : '로그인'}</span>
               </Link>
             )}
           </div>
