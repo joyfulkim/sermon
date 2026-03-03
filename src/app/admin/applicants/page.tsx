@@ -98,12 +98,20 @@ export default function AdminApplicantsPage() {
             return;
         }
         const selectedEmails = registrations.filter(r => selectedIds.includes(r.id)).map(r => r.email).join(',');
-        const selectedPhones = registrations.filter(r => selectedIds.includes(r.id)).map(r => r.phone).join(',');
+        const selectedPhones = registrations.filter(r => selectedIds.includes(r.id)).map(r => r.phone);
 
         if (action === 'email') {
             window.location.href = `mailto:?bcc=${selectedEmails}&subject=[2026 설교세미나 안내]`;
         } else {
-            alert(`${selectedIds.length}명에게 문자를 발송합니다 (연동 서비스 필요). \n대상번호: ${selectedPhones}`);
+            // iOS uses comma, Android uses semicolon
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+            const separator = isIOS ? ',' : ';';
+            const phoneStr = selectedPhones.join(separator);
+
+            // Note: Different mobile browsers/OS versions handle multi-recipient SMS differently.
+            // Some might require "sms:p1,p2,p3", others "sms:?body=...&addresses=..."
+            // The most widely supported simple method is "sms:number1;number2" or "sms:number1,number2"
+            window.location.href = `sms:${phoneStr}`;
         }
     };
 
