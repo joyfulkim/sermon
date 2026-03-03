@@ -49,7 +49,7 @@ export default function VideosPage() {
 
     return (
         <div className="page-content">
-            <Header title="홍보영상" showBack={false} />
+            <Header title="홍보영상" showBack={true} />
 
             <div className="section-header fade-in-up">
                 <h2 className="section-title">PROMOTIONAL VIDEO</h2>

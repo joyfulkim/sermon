@@ -56,7 +56,7 @@ export default function PhotosPage() {
 
     return (
         <div className="page-content">
-            <Header title="사진 앨범" showBack={false} />
+            <Header title="사진 앨범" showBack={true} />
 
             <div className="section-header fade-in-up">
                 <h2 className="section-title">PHOTO ALBUM</h2>

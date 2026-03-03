@@ -76,7 +76,7 @@ export default function QAPage() {
 
     return (
         <div className="page-content">
-            <Header title="Q&A" showBack={false} rightAction={
+            <Header title="Q&A" showBack={true} rightAction={
                 user ? (
                     <button onClick={() => setShowForm(!showForm)} style={{ background: 'var(--neon-blue)', border: 'none', cursor: 'pointer', color: 'white', width: '36px', height: '36px', borderRadius: '18px', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 15px rgba(59,130,246,0.4)', transition: 'var(--transition)' }}>
                         <Plus size={20} style={{ transform: showForm ? 'rotate(45deg)' : 'none', transition: 'var(--transition)' }} />
