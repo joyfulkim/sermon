@@ -76,7 +76,7 @@ export default function QAPage() {
 
     return (
         <div className="page-content">
-            <Header title="Q&A" showBack={true} rightAction={
+            <Header title="Q&A 묻고 답하기" showBack={true} rightAction={
                 user ? (
                     <button onClick={() => setShowForm(!showForm)} style={{ background: 'var(--neon-blue)', border: 'none', cursor: 'pointer', color: 'white', width: '36px', height: '36px', borderRadius: '18px', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 15px rgba(59,130,246,0.4)', transition: 'var(--transition)' }}>
                         <Plus size={20} style={{ transform: showForm ? 'rotate(45deg)' : 'none', transition: 'var(--transition)' }} />
@@ -85,7 +85,7 @@ export default function QAPage() {
             } />
 
             <div className="section-header fade-in-up">
-                <h2 className="section-title">Q & A COMMUNITY</h2>
+                <h2 className="section-title">Q & A 묻고 답하기</h2>
                 <p className="section-subtitle">세미나에 대한 궁금한 점을 자유롭게 질문해 주세요</p>
             </div>
 

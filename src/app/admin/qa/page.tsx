@@ -70,10 +70,10 @@ export default function AdminQAPage() {
 
     return (
         <div className="page-content">
-            <Header title="Q&A 답변 관리" showBack />
+            <Header title="Q&A 묻고 답하기 관리" showBack />
 
             <div className="section-header fade-in-up">
-                <h2 className="section-title">Q&A MANAGEMENT</h2>
+                <h2 className="section-title">Q&A 묻고 답하기</h2>
                 <p className="section-subtitle">사용자들의 질문에 답변을 작성해 주세요</p>
             </div>
 

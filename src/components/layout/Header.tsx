@@ -44,7 +44,7 @@ export default function Header({ title, showBack = false, showProfile = true, ri
                 <Link href="/notices" className="nav-link-desktop">공지</Link>
                 <Link href="/videos" className="nav-link-desktop">영상</Link>
                 <Link href="/photos" className="nav-link-desktop">앨범</Link>
-                <Link href="/qa" className="nav-link-desktop">Q&A</Link>
+                <Link href="/qa" className="nav-link-desktop">Q&A 묻고 답하기</Link>
             </nav>
 
             <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: '12px' }}>

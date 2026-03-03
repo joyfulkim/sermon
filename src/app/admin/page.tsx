@@ -9,7 +9,7 @@ const adminMenus = [
     { href: '/admin/notices', icon: Bell, label: '공지사항 관리', color: '#f87171', desc: '새로운 공지 등록 및 수정/삭제' },
     { href: '/admin/videos', icon: Video, label: '영상 관리', color: '#a78bfa', desc: '유튜브 영상 링크 등록 및 삭제' },
     { href: '/admin/photos', icon: ImageIcon, label: '사진 관리', color: '#fbbf24', desc: '현장 사진 업로드 및 삭제' },
-    { href: '/admin/qa', icon: MessageCircle, label: 'Q&A 답변 관리', color: '#38bdf8', desc: '질문 확인 및 답변 작성' },
+    { href: '/admin/qa', icon: MessageCircle, label: 'Q&A 묻고 답하기 관리', color: '#38bdf8', desc: '질문 확인 및 답변 작성' },
 ];
 
 export default function AdminPage() {
