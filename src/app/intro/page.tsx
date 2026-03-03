@@ -149,7 +149,7 @@ export default function IntroPage() {
                                 {[
                                     { r: '주최', n: '성서침례대학원대학교', c: '#93c5fd' },
                                     { r: '주관', n: '성침진흥위원회', c: 'var(--text-secondary)' },
-                                    { r: '협력', n: '선한목자교회 비전센터, 조이플 미션', c: 'var(--text-tertiary)' },
+                                    { r: '협력', n: '조이플 미션, 선한목자교회', c: 'var(--text-tertiary)' },
                                 ].map((org, i) => (
                                     <p key={i} style={{ fontSize: '13px', marginBottom: i < 2 ? '6px' : 0, display: 'flex', alignItems: 'center' }}>
                                         <span style={{ fontSize: '11px', fontWeight: 700, color: org.c, width: '32px', display: 'inline-block' }}>{org.r}</span>

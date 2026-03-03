@@ -176,8 +176,8 @@ export default function HomePage() {
       <div style={{ padding: '32px 20px', textAlign: 'center' }}>
         <div style={{ display: 'inline-flex', flexDirection: 'column', gap: '8px', padding: '20px 32px', background: 'rgba(255,255,255,0.02)', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.04)' }}>
           <p style={{ fontSize: '12px', lineHeight: 1.8, fontWeight: 700, letterSpacing: '-0.2px' }}>
-            <span style={{ color: 'var(--text-secondary)' }}>주최 | 주관</span> <span style={{ color: 'rgba(255,255,255,0.45)' }}>성서침례대학원대학교 · 성침진흥위원회</span><br />
-            <span style={{ color: 'var(--text-secondary)' }}>협력</span> <span style={{ color: 'rgba(255,255,255,0.15)' }}>|</span> <span style={{ color: 'rgba(255,255,255,0.45)' }}>선한목자교회 비전센터 · 조이플 미션</span>
+            <span style={{ color: 'var(--text-secondary)' }}>주최</span> <span style={{ color: 'rgba(255,255,255,0.45)' }}>성서침례대학원대학교</span> <span style={{ color: 'rgba(255,255,255,0.15)' }}>|</span> <span style={{ color: 'var(--text-secondary)' }}>주관</span> <span style={{ color: 'rgba(255,255,255,0.45)' }}>성침진흥위원회</span><br />
+            <span style={{ color: 'var(--text-secondary)' }}>협력</span> <span style={{ color: 'rgba(255,255,255,0.15)' }}>|</span> <span style={{ color: 'rgba(255,255,255,0.45)' }}>조이플 미션 · 선한목자교회</span>
           </p>
         </div>
         <div style={{ marginTop: '24px' }}>
