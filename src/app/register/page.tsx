@@ -29,7 +29,7 @@ export default function RegisterPage() {
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
 
-    const fee = formData.type === 'general' ? '80,000' : '30,000';
+    const fee = formData.type === 'general' ? '80,000' : '50,000';
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value, type } = e.target as HTMLInputElement;
@@ -63,7 +63,7 @@ export default function RegisterPage() {
 
         setLoading(true);
         try {
-            const amount = formData.type === 'general' ? 80000 : 30000;
+            const amount = formData.type === 'general' ? 80000 : 50000;
             const docRef = await addDoc(collection(db, 'registrations'), {
                 ...formData,
                 userId: user?.uid || null,
@@ -108,7 +108,7 @@ export default function RegisterPage() {
                     </div>
                     <h2 style={{ fontSize: '24px', fontWeight: 800, marginBottom: '12px', letterSpacing: '-0.5px' }}>신청서 접수 완료</h2>
                     <p style={{ fontSize: '15px', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '32px' }}>
-                        세미나 사전 등록이 정상적으로 접수되었습니다.<br />
+                        세미나 등록이 정상적으로 접수되었습니다.<br />
                         등록비를 입금해 주시면 최종 확정됩니다.
                     </p>
 
@@ -133,7 +133,7 @@ export default function RegisterPage() {
 
     return (
         <div className="page-content">
-            <Header title="사전 등록" showBack />
+            <Header title="세미나 등록" showBack />
 
             <div style={{ padding: '16px 20px 40px' }} className="fade-in-up">
                 <div style={{ padding: '24px', background: 'linear-gradient(135deg, rgba(37,99,235,0.15), rgba(6,182,212,0.05))', borderRadius: '20px', border: '1px solid rgba(59,130,246,0.2)', marginBottom: '24px', position: 'relative', overflow: 'hidden' }}>
@@ -171,7 +171,7 @@ export default function RegisterPage() {
                         <div className="form-group">
                             <h3 style={{ fontSize: '16px', fontWeight: 700, marginBottom: '8px', color: 'white' }}>05 섬기시는 교회(단체)와 직분(직위)은? *</h3>
                             <p style={{ fontSize: '12px', color: 'var(--text-tertiary)', marginBottom: '12px' }}>*What church (organization) and position (position) do you serve?</p>
-                            <input name="church" type="text" className="form-input" placeholder="예: 선한목자교회 / 담임목사" value={formData.church} onChange={handleChange} required />
+                            <input name="church" type="text" className="form-input" placeholder="예: 선한목자교회 비전센터 / 담임목사" value={formData.church} onChange={handleChange} required />
                         </div>
                     </div>
 
@@ -179,7 +179,7 @@ export default function RegisterPage() {
                         <div className="form-group">
                             <h3 style={{ fontSize: '16px', fontWeight: 700, marginBottom: '8px', color: 'white' }}>06 세미나 등록비 입금에 대한 '영수증 발행'이 필요하십니까?</h3>
                             <p style={{ fontSize: '12px', color: 'var(--text-tertiary)', marginBottom: '16px', lineHeight: 1.5 }}>
-                                *세미나 등록비는 4월말까지 선등록시, 1인당 5만원이며 이후에는 6만원 입니다. 신학생은 등록기간에 상관없이 3만원이며... (후략)
+                                *세미나 등록비는 1인당 8만원이며, 신학생은 5만원입니다. 입금 확인 후 영수증을 메일로 발송해 드립니다.
                             </p>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                                 <label style={{ display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer' }}>
@@ -197,33 +197,16 @@ export default function RegisterPage() {
                             <h3 style={{ fontSize: '16px', fontWeight: 700, marginBottom: '8px', color: 'white' }}>참석 유형 (등록비 확인) *</h3>
                             <select name="type" className="form-select" value={formData.type} onChange={handleChange} style={{ background: 'rgba(255,255,255,0.05)', fontWeight: 600 }}>
                                 <option value="general">일반 / 목회자 (80,000원)</option>
-                                <option value="student">신학생 할인 (30,000원)</option>
+                                <option value="student">신학생 할인 (50,000원)</option>
                             </select>
                         </div>
                     </div>
 
-                    <div className="card-glass fade-in-up" style={{ padding: '24px 20px', marginBottom: '24px' }}>
-                        <div className="form-group">
-                            <h3 style={{ fontSize: '16px', fontWeight: 700, marginBottom: '8px', color: 'white' }}>07 행사장 오시는 방법은? *</h3>
-                            <p style={{ fontSize: '12px', color: 'var(--text-tertiary)', marginBottom: '16px' }}>*How to get to the event venue?</p>
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                                {[
-                                    { id: 'public', label: '대중교통 (3호선 잠원역 3번 출구-도보 1분거리/고속터미널-차량 5분거리)' },
-                                    { id: 'car', label: '자가차량 (주차장이 협소하여 대중교통을 이용 바랍니다.)' },
-                                    { id: 'walk', label: '도보이용' }
-                                ].map((opt) => (
-                                    <label key={opt.id} style={{ display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer' }}>
-                                        <input type="radio" name="transportation" value={opt.id} checked={formData.transportation === opt.id} onChange={handleChange} required style={{ width: '18px', height: '18px' }} />
-                                        <span style={{ fontSize: '14px', lineHeight: 1.4 }}>{opt.label}</span>
-                                    </label>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
+                    {/* Transportation question removed per user request */}
 
                     <div className="card-glass fade-in-up" style={{ padding: '24px 20px', marginBottom: '24px' }}>
                         <div className="form-group">
-                            <h3 style={{ fontSize: '16px', fontWeight: 700, marginBottom: '8px', color: 'white' }}>08 세미나에 관한 정보는 어디를 통해서 알게 되셨습니까? *</h3>
+                            <h3 style={{ fontSize: '16px', fontWeight: 700, marginBottom: '8px', color: 'white' }}>07 세미나에 관한 정보는 어디를 통해서 알게 되셨습니까? *</h3>
                             <p style={{ fontSize: '12px', color: 'var(--text-tertiary)', marginBottom: '16px' }}>*Where did you find out about the seminar? (응답자는 최대 3개 선택 가능)</p>
                             <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '12px' }}>
                                 {['지인추천', 'SNS (페이스 북/인스타그램 등)', '간행물 광고 (목회와 신학/성침트리뷴/월간 목회 등)', '방송 뉴스와 기사', '이메일', '문자광고', '기타'].map((opt) => (
@@ -244,7 +227,7 @@ export default function RegisterPage() {
 
                     <div className="card-glass fade-in-up" style={{ padding: '24px 20px', marginBottom: '32px' }}>
                         <div className="form-group" style={{ marginBottom: 0 }}>
-                            <h3 style={{ fontSize: '16px', fontWeight: 700, marginBottom: '8px', color: 'white' }}>09 개인정보 수집 및 이용에 동의하십니까? *</h3>
+                            <h3 style={{ fontSize: '16px', fontWeight: 700, marginBottom: '8px', color: 'white' }}>08 개인정보 수집 및 이용에 동의하십니까? *</h3>
                             <p style={{ fontSize: '12px', color: 'var(--text-tertiary)', marginBottom: '16px', lineHeight: 1.5 }}>
                                 본 신청서를 통해 수집된 개인정보는 세미나 참가자 관리 및 행사 안내를 위해서만 사용되며, 행사 종료 후 1개월 내에 파기됩니다.
                             </p>

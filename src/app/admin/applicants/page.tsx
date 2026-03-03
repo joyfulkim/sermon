@@ -25,6 +25,7 @@ interface Registration {
     source: string[];
     privacyAgreed: boolean;
     createdAt: any;
+    updatedAt: any;
 }
 
 export default function AdminApplicantsPage() {
@@ -33,6 +34,8 @@ export default function AdminApplicantsPage() {
     const [registrations, setRegistrations] = useState<Registration[]>([]);
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
+    const [selectedIds, setSelectedIds] = useState<string[]>([]);
+    const [updatingId, setUpdatingId] = useState<string | null>(null);
 
     useEffect(() => {
         if (!authLoading) {
@@ -57,6 +60,50 @@ export default function AdminApplicantsPage() {
             console.error("Error fetching registrations:", error);
         } finally {
             setLoading(false);
+        }
+    };
+
+    const handleStatusChange = async (id: string, newStatus: string) => {
+        setUpdatingId(id);
+        try {
+            const { doc, updateDoc, serverTimestamp } = await import('firebase/firestore');
+            await updateDoc(doc(db, 'registrations', id), {
+                status: newStatus,
+                updatedAt: serverTimestamp()
+            });
+            setRegistrations(prev => prev.map(reg => reg.id === id ? { ...reg, status: newStatus } : reg));
+        } catch (error) {
+            console.error("Status update error:", error);
+            alert('상태 변경에 실패했습니다.');
+        } finally {
+            setUpdatingId(null);
+        }
+    };
+
+    const toggleSelect = (id: string) => {
+        setSelectedIds(prev => prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]);
+    };
+
+    const toggleSelectAll = () => {
+        if (selectedIds.length === filteredRegistrations.length) {
+            setSelectedIds([]);
+        } else {
+            setSelectedIds(filteredRegistrations.map(r => r.id));
+        }
+    };
+
+    const handleBulkAction = (action: 'email' | 'sms') => {
+        if (selectedIds.length === 0) {
+            alert('대상자를 선택해 주세요.');
+            return;
+        }
+        const selectedEmails = registrations.filter(r => selectedIds.includes(r.id)).map(r => r.email).join(',');
+        const selectedPhones = registrations.filter(r => selectedIds.includes(r.id)).map(r => r.phone).join(',');
+
+        if (action === 'email') {
+            window.location.href = `mailto:?bcc=${selectedEmails}&subject=[2026 설교세미나 안내]`;
+        } else {
+            alert(`${selectedIds.length}명에게 문자를 발송합니다 (연동 서비스 필요). \n대상번호: ${selectedPhones}`);
         }
     };
 
@@ -105,11 +152,23 @@ export default function AdminApplicantsPage() {
                         <h2 style={{ fontSize: '24px', fontWeight: 800, marginBottom: '4px' }}>신청자 현황</h2>
                         <p style={{ fontSize: '14px', color: 'var(--text-secondary)' }}>총 {registrations.length}명의 신청자가 있습니다.</p>
                     </div>
-                    <button onClick={exportToExcel} className="btn-secondary" style={{ width: 'auto', padding: '10px 16px', display: 'flex', gap: '8px', alignItems: 'center', background: 'var(--neon-blue)', border: 'none', color: 'white' }}>
-                        <FileDown size={18} />
-                        엑셀 다운로드
-                    </button>
+                    <div style={{ display: 'flex', gap: '8px' }}>
+                        <button onClick={exportToExcel} className="btn-secondary" style={{ width: 'auto', padding: '10px 16px', display: 'flex', gap: '8px', alignItems: 'center', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', color: 'white' }}>
+                            <FileDown size={18} />
+                            엑셀
+                        </button>
+                    </div>
                 </div>
+
+                {selectedIds.length > 0 && (
+                    <div className="fade-in-up" style={{ marginBottom: '24px', padding: '16px', background: 'rgba(59,130,246,0.1)', borderRadius: '16px', border: '1px solid rgba(59,130,246,0.3)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <p style={{ fontSize: '14px', fontWeight: 700, color: 'var(--neon-blue)' }}>{selectedIds.length}명 선택됨</p>
+                        <div style={{ display: 'flex', gap: '8px' }}>
+                            <button onClick={() => handleBulkAction('email')} className="btn-secondary" style={{ width: 'auto', padding: '8px 12px', fontSize: '12px', border: '1px solid var(--neon-blue)', color: 'var(--neon-blue)' }}>이메일 발송</button>
+                            <button onClick={() => handleBulkAction('sms')} className="btn-secondary" style={{ width: 'auto', padding: '8px 12px', fontSize: '12px', border: '1px solid var(--neon-cyan)', color: 'var(--neon-cyan)' }}>문자 발송</button>
+                        </div>
+                    </div>
+                )}
 
                 <div style={{ position: 'relative', marginBottom: '24px' }}>
                     <Search size={18} style={{ position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-tertiary)' }} />
@@ -124,20 +183,39 @@ export default function AdminApplicantsPage() {
                 </div>
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '0 8px', marginBottom: '4px' }}>
+                        <input type="checkbox" checked={selectedIds.length === filteredRegistrations.length && filteredRegistrations.length > 0} onChange={toggleSelectAll} style={{ width: '18px', height: '18px' }} />
+                        <span style={{ fontSize: '13px', color: 'var(--text-tertiary)', fontWeight: 600 }}>전체 선택</span>
+                    </div>
+
                     {filteredRegistrations.map((reg) => (
-                        <div key={reg.id} className="card-glass" style={{ padding: '16px' }}>
-                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '12px' }}>
+                        <div key={reg.id} className="card-glass" style={{ padding: '16px', border: selectedIds.includes(reg.id) ? '1px solid var(--neon-blue)' : '1px solid rgba(255,255,255,0.08)', position: 'relative' }}>
+                            <input
+                                type="checkbox"
+                                checked={selectedIds.includes(reg.id)}
+                                onChange={() => toggleSelect(reg.id)}
+                                style={{ position: 'absolute', right: '16px', top: '16px', width: '20px', height: '20px', zIndex: 1 }}
+                            />
+
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '12px', paddingRight: '24px' }}>
                                 <div>
                                     <span style={{ fontSize: '12px', color: 'var(--neon-cyan)', fontWeight: 700, display: 'block', marginBottom: '4px' }}>
                                         {reg.type === 'general' ? '일반/목회자' : '신학생'}
                                     </span>
                                     <h3 style={{ fontSize: '18px', fontWeight: 800 }}>{reg.name}</h3>
                                 </div>
-                                <div style={{ textAlign: 'right' }}>
-                                    <span style={{ fontSize: '14px', fontWeight: 700, color: reg.status === 'confirmed' ? '#34d399' : 'var(--gold)' }}>
-                                        {reg.status === 'confirmed' ? '입금확인' : '입금대기'}
-                                    </span>
-                                    <span style={{ fontSize: '12px', color: 'var(--text-tertiary)', display: 'block', marginTop: '4px' }}>
+                                <div style={{ textAlign: 'right', display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                                    <select
+                                        value={reg.status}
+                                        onChange={(e) => handleStatusChange(reg.id, e.target.value)}
+                                        disabled={updatingId === reg.id}
+                                        style={{ background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.1)', color: reg.status === 'confirmed' ? '#34d399' : reg.status === 'pending' ? 'var(--gold)' : '#f87171', borderRadius: '8px', fontSize: '12px', padding: '4px 8px', fontWeight: 700, outline: 'none' }}
+                                    >
+                                        <option value="pending">입금대기</option>
+                                        <option value="confirmed">등록완료</option>
+                                        <option value="cancelled">등록취소</option>
+                                    </select>
+                                    <span style={{ fontSize: '12px', color: 'var(--text-tertiary)', display: 'block' }}>
                                         {reg.amount.toLocaleString()}원
                                     </span>
                                 </div>
@@ -148,7 +226,6 @@ export default function AdminApplicantsPage() {
                                 <div style={{ gridColumn: 'span 2' }}><strong>교회/직분:</strong> {reg.church}</div>
                                 <div><strong>입금자:</strong> {reg.depositorName}</div>
                                 <div><strong>영수증:</strong> {reg.needsReceipt === 'yes' ? '필요' : '미필요'}</div>
-                                <div style={{ gridColumn: 'span 2' }}><strong>오시는법:</strong> {reg.transportation === 'public' ? '대중교통' : reg.transportation === 'car' ? '자가용' : '도보'}</div>
                                 <div style={{ gridColumn: 'span 2' }}><strong>연락처:</strong> {reg.phone}</div>
                                 <div style={{ gridColumn: 'span 2' }}><strong>이메일:</strong> {reg.email}</div>
                                 <div style={{ gridColumn: 'span 2' }}><strong>경로:</strong> {reg.source?.join(', ')}</div>

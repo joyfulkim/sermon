@@ -111,7 +111,7 @@ export default function ProfilePage() {
                             <div className="spinner" />
                         </div>
                     ) : registrations.length > 0 ? (
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                        <div className="grid-responsive" style={{ gap: '12px' }}>
                             {registrations.map(reg => (
                                 <div key={reg.id} className="card-glass" style={{ padding: '20px', borderRadius: '20px', background: 'rgba(255,255,255,0.02)' }}>
                                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
@@ -149,7 +149,7 @@ export default function ProfilePage() {
                 </div>
 
                 {/* Actions */}
-                <div className="fade-in-up fade-delay-3" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                <div className="grid-responsive-3 fade-in-up fade-delay-3" style={{ gap: '12px' }}>
                     {userProfile?.isAdmin && (
                         <button
                             onClick={() => router.push('/admin/applicants')}

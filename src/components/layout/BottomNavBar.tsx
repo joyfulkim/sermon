@@ -6,10 +6,10 @@ import { Home, Info, FileText, Image, Video, Bell, MessageCircle } from 'lucide-
 
 const navItems = [
     { href: '/', icon: Home, label: '홈' },
+    { href: '/intro', icon: Info, label: '소개' },
+    { href: '/register', icon: FileText, label: '등록' },
     { href: '/notices', icon: Bell, label: '공지' },
-    { href: '/videos', icon: Video, label: '영상' },
-    { href: '/photos', icon: Image, label: '앨범' },
-    { href: '/qa', icon: MessageCircle, label: 'Q&A' },
+    { href: '/qa', icon: MessageCircle, label: 'Q/A' },
 ];
 
 export default function BottomNavBar() {

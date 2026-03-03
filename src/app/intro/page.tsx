@@ -5,12 +5,10 @@ import Link from 'next/link';
 import { BookOpen, Users, Calendar, MapPin, ChevronRight, Award } from 'lucide-react';
 
 const schedule = [
-    { day: 'Day 1 (6/8)', time: '10:00~12:00', title: '그리스도 중심 설교의 신학적 기초' },
-    { day: 'Day 1 (6/8)', time: '13:30~15:30', title: 'Pericope 분석과 설교 적용' },
-    { day: 'Day 1 (6/8)', time: '16:00~17:00', title: '실습 및 Q&A' },
-    { day: 'Day 2 (6/9)', time: '10:00~12:00', title: 'Christ-iconic 설교 실제' },
-    { day: 'Day 2 (6/9)', time: '13:30~15:30', title: '설교 초안 작성 실습' },
-    { day: 'Day 2 (6/9)', time: '16:00~17:00', title: '종합 피드백 및 마무리' },
+    { day: '월/8일', time: '오전', title: '설교의 비전 복습' },
+    { day: '월/8일', time: '오후', title: '설교의 계획과 준비 / 예화 Illustrating' },
+    { day: '화/9일', time: '오전', title: '설교 서론과 결론 / 설교작성' },
+    { day: '화/9일', time: '오후', title: '설교의 전달 / 장기적 준비' },
 ];
 
 export default function IntroPage() {
@@ -23,9 +21,18 @@ export default function IntroPage() {
                 <div style={{ position: 'relative', overflow: 'hidden', padding: '32px 20px', background: 'linear-gradient(180deg, rgba(30, 45, 90, 0.2), transparent)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
                     <div style={{ position: 'absolute', top: -50, right: -50, width: '150px', height: '150px', background: 'var(--neon-blue)', filter: 'blur(60px)', opacity: 0.2 }} />
 
-                    <div style={{ display: 'flex', gap: '20px', alignItems: 'center', position: 'relative', zIndex: 1 }}>
-                        <div style={{ width: '90px', height: '90px', borderRadius: '24px', background: 'linear-gradient(135deg, rgba(59,130,246,0.3), rgba(6,182,212,0.1))', border: '1px solid rgba(147,197,253,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontSize: '36px', boxShadow: '0 8px 32px rgba(59,130,246,0.2)' }}>
-                            👨‍🏫
+                    <div style={{ display: 'flex', gap: '20px', alignItems: 'center', position: 'relative', zIndex: 1, flexWrap: 'wrap' }}>
+                        <div style={{ width: '90px', height: '90px', borderRadius: '24px', background: 'linear-gradient(135deg, rgba(59,130,246,0.3), rgba(6,182,212,0.1))', border: '1px solid rgba(147,197,253,0.3)', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: '0 8px 32px rgba(59,130,246,0.2)' }}>
+                            <img
+                                src="/professor.png"
+                                alt="Dr. Abraham Kuruvilla"
+                                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                onError={(e) => {
+                                    (e.target as HTMLImageElement).style.display = 'none';
+                                    const parent = (e.target as HTMLElement).parentElement;
+                                    if (parent) parent.innerHTML = '👨‍🏫';
+                                }}
+                            />
                         </div>
                         <div style={{ flex: 1 }}>
                             <span className="badge badge-blue" style={{ marginBottom: '10px', display: 'inline-flex', letterSpacing: '0.5px' }}>KEYNOTE SPEAKER</span>
@@ -75,7 +82,7 @@ export default function IntroPage() {
                 {/* Key Concepts Grid */}
                 <div style={{ padding: '32px 20px 0' }} className="fade-in-up fade-delay-2">
                     <h3 style={{ fontSize: '16px', fontWeight: 800, marginBottom: '16px', letterSpacing: '0.5px' }}>핵심 키워드</h3>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(1, 1fr)', gap: '12px' }}>
+                    <div className="grid-responsive" style={{ gap: '12px' }}>
                         {[
                             { icon: '📖', title: 'Pericope 중심', desc: '성경 본문의 구조적 단위를 가장 중요하게 다루는 해석', color: 'rgba(96,165,250,0.1)' },
                             { icon: '✨', title: 'Christ-iconic', desc: '설교를 통해 그리스도의 형상을 삶 속에 온전히 드러내는 접근', color: 'rgba(167,139,250,0.1)' },
@@ -127,8 +134,8 @@ export default function IntroPage() {
                                 <MapPin size={18} color="var(--neon-blue)" />
                             </div>
                             <div>
-                                <p style={{ fontSize: '15px', fontWeight: 800 }}>선한목자교회</p>
-                                <p style={{ fontSize: '12px', color: 'var(--neon-blue)', marginTop: '2px', fontWeight: 500 }}>수정구 복정동 | 031.634.1258</p>
+                                <p style={{ fontSize: '15px', fontWeight: 800 }}>선한목자교회 비전센터</p>
+                                <p style={{ fontSize: '12px', color: 'var(--neon-blue)', marginTop: '2px', fontWeight: 500 }}>성남시 수정구 복정동 | 031.634.1258</p>
                             </div>
                         </div>
 
@@ -142,7 +149,7 @@ export default function IntroPage() {
                                 {[
                                     { r: '주최', n: '성서침례대학원대학교', c: '#93c5fd' },
                                     { r: '주관', n: '성침진흥위원회', c: 'var(--text-secondary)' },
-                                    { r: '협력', n: '조이플 미션 외', c: 'var(--text-tertiary)' },
+                                    { r: '협력', n: '선한목자교회 비전센터, 조이플 미션', c: 'var(--text-tertiary)' },
                                 ].map((org, i) => (
                                     <p key={i} style={{ fontSize: '13px', marginBottom: i < 2 ? '6px' : 0, display: 'flex', alignItems: 'center' }}>
                                         <span style={{ fontSize: '11px', fontWeight: 700, color: org.c, width: '32px', display: 'inline-block' }}>{org.r}</span>

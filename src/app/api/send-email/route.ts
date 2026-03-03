@@ -3,9 +3,8 @@ import { Resend } from 'resend';
 
 export const dynamic = 'force-dynamic';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function POST(request: Request) {
+    const resend = new Resend(process.env.RESEND_API_KEY);
     try {
         const { applicantInfo, adminEmail } = await request.json();
 
@@ -26,6 +25,7 @@ export async function POST(request: Request) {
                         <li><strong>소속:</strong> ${applicantInfo.church}</li>
                         <li><strong>입금하실 금액:</strong> ${applicantInfo.amount.toLocaleString()}원</li>
                         <li><strong>입금 계좌:</strong> 카카오뱅크 3333-14-6097669 (예금주: 최정기)</li>
+                        <li><strong>장소:</strong> 선한목자교회 비전센터</li>
                     </ul>
                     <p style="color: #666; font-size: 14px;">입금이 확인된 후 최종 등록 완료 안내 문자를 발송해 드립니다.</p>
                     <p>감사합니다.</p>
@@ -48,9 +48,8 @@ export async function POST(request: Request) {
                             <li><strong>연락처:</strong> ${applicantInfo.phone}</li>
                             <li><strong>이메일:</strong> ${applicantInfo.email}</li>
                             <li><strong>소속/직분:</strong> ${applicantInfo.church}</li>
-                            <li><strong>구분:</strong> ${applicantInfo.type === 'general' ? '일반' : '학생'}</li>
+                            <li><strong>구분:</strong> ${applicantInfo.type === 'general' ? '일반 / 목회자' : '신학생 할인'}</li>
                             <li><strong>영수증 발행:</strong> ${applicantInfo.needsReceipt === 'yes' ? '신청' : '안함'}</li>
-                            <li><strong>오시는 방법:</strong> ${applicantInfo.transportation === 'public' ? '대중교통' : applicantInfo.transportation === 'car' ? '자가용' : '도보'}</li>
                             <li><strong>정보 취득:</strong> ${applicantInfo.source?.join(', ') || '없음'}</li>
                             <li><strong>입금자명:</strong> ${applicantInfo.depositorName}</li>
                             <li><strong>금액:</strong> ${applicantInfo.amount.toLocaleString()}원</li>

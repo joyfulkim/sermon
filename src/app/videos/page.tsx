@@ -49,14 +49,14 @@ export default function VideosPage() {
 
     return (
         <div className="page-content">
-            <Header title="세미나 영상" showBack={false} />
+            <Header title="홍보영상" showBack={false} />
 
             <div className="section-header fade-in-up">
-                <h2 className="section-title">SEMINAR VOD</h2>
-                <p className="section-subtitle">지난 세미나 강의 영상을 다시 시청하실 수 있습니다</p>
+                <h2 className="section-title">PROMOTIONAL VIDEO</h2>
+                <p className="section-subtitle">세미나 홍보 및 관련 영상을 시청하실 수 있습니다</p>
             </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', padding: '0 20px 24px' }}>
+            <div className="grid-responsive" style={{ padding: '0 20px 24px' }}>
                 {videos.map((video, i) => {
                     const hasAccess = video.isPublic || user;
 

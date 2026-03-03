@@ -70,7 +70,8 @@ body {
    GLOBAL ANIMATED BACKGROUND
 ================================= */
 .mobile-container {
-  max-width: 480px;
+  width: 100%;
+  max-width: 100%;
   margin: 0 auto;
   min-height: 100vh;
   min-height: 100dvh;
@@ -78,7 +79,6 @@ body {
   overflow-x: hidden;
   overflow-y: auto;
   background: linear-gradient(145deg, var(--bg-gradient-start), var(--bg-gradient-end));
-  box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
 }
 
 /* Premium Neon Glow Background Elements */
@@ -182,7 +182,7 @@ body {
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-  max-width: 480px;
+  max-width: 1200px;
   z-index: 100;
   background: rgba(4, 10, 25, 0.6);
   backdrop-filter: blur(24px);
@@ -239,7 +239,7 @@ body {
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-  max-width: 480px;
+  max-width: 1200px;
   z-index: 100;
   background: rgba(2, 6, 23, 0.75);
   backdrop-filter: blur(30px) saturate(150%);
@@ -552,6 +552,61 @@ body {
 @keyframes spin {
   to {
     transform: rotate(360deg);
+  }
+}
+
+/* Desktop Optimizations */
+@media (min-width: 768px) {
+  .page-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  .grid-responsive {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .grid-responsive-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .hide-on-desktop {
+    display: none !important;
+  }
+
+  .bottom-nav {
+    display: none !important;
+  }
+
+  .nav-link-desktop {
+    color: var(--text-tertiary);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    transition: var(--transition);
+  }
+
+  .nav-link-desktop:hover {
+    color: var(--neon-cyan);
+    text-shadow: 0 0 10px var(--glow-cyan);
+  }
+}
+
+@media (max-width: 767px) {
+  .show-on-desktop {
+    display: none !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-responsive {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 

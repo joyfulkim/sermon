@@ -85,8 +85,8 @@ export default function QAPage() {
             } />
 
             <div className="section-header fade-in-up">
-                <h2 className="section-title">Q & A</h2>
-                <p className="section-subtitle">세미나에 대한 궁금한 점을 질문해 주세요</p>
+                <h2 className="section-title">Q & A COMMUNITY</h2>
+                <p className="section-subtitle">세미나에 대한 궁금한 점을 자유롭게 질문해 주세요</p>
             </div>
 
             {/* Submit Form */}
@@ -128,7 +128,7 @@ export default function QAPage() {
             )}
 
             {/* QA List */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', padding: '0 20px 24px' }}>
+            <div className="grid-responsive" style={{ padding: '0 20px 24px' }}>
                 {qaList.filter(qa => qa.isPublic || qa.authorId === user?.uid || userProfile?.isAdmin).map((qa, i) => (
                     <div key={qa.id} className={`card-glass fade-in-up fade-delay-${(i % 3) + 1}`} style={{ padding: '0', borderRadius: '20px' }}>
                         <button

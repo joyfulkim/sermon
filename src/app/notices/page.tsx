@@ -54,7 +54,7 @@ export default function NoticesPage() {
                 <p className="section-subtitle">세미나 관련 중요 소식을 전해드립니다</p>
             </div>
 
-            <div style={{ padding: '0 20px 24px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <div className="grid-responsive" style={{ padding: '0 20px 24px' }}>
 
                 {/* Pinned Notices */}
                 {pinned.map(notice => (

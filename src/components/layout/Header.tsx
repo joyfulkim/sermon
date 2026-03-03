@@ -34,18 +34,26 @@ export default function Header({ title, showBack = false, showProfile = true, ri
             )}
 
             {title && (
-                <h1 className="header-title">{title}</h1>
+                <h1 className="header-title" style={{ marginLeft: showBack ? '0' : '20px' }}>{title}</h1>
             )}
+
+            <nav className="show-on-desktop" style={{ display: 'flex', gap: '24px', marginLeft: '40px' }}>
+                <Link href="/" className="nav-link-desktop">홈</Link>
+                <Link href="/notices" className="nav-link-desktop">공지</Link>
+                <Link href="/videos" className="nav-link-desktop">영상</Link>
+                <Link href="/photos" className="nav-link-desktop">앨범</Link>
+                <Link href="/qa" className="nav-link-desktop">Q&A</Link>
+            </nav>
 
             <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: '12px' }}>
                 {userProfile?.isAdmin && (
-                    <Link href="/admin/applicants" style={{ 
-                        background: 'rgba(37,99,235,0.3)', 
+                    <Link href="/admin/applicants" style={{
+                        background: 'rgba(37,99,235,0.3)',
                         backdropFilter: 'blur(10px)',
                         border: '1px solid rgba(59,130,246,0.3)',
                         padding: '6px 12px',
                         borderRadius: '20px',
-                        color: 'white', 
+                        color: 'white',
                         fontSize: '11px',
                         fontWeight: 800,
                         textDecoration: 'none'

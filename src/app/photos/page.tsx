@@ -59,11 +59,11 @@ export default function PhotosPage() {
             <Header title="사진 앨범" showBack={false} />
 
             <div className="section-header fade-in-up">
-                <h2 className="section-title">GALLERY</h2>
+                <h2 className="section-title">PHOTO ALBUM</h2>
                 <p className="section-subtitle">세미나의 생생한 현장 사진을 공유합니다</p>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px', padding: '0 20px 24px' }}>
+            <div className="grid-responsive" style={{ padding: '0 20px 24px' }}>
                 {photos.map((photo, i) => (
                     <div
                         key={photo.id}
