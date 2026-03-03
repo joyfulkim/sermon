@@ -9,7 +9,7 @@ const navItems = [
     { href: '/intro', icon: Info, label: '소개' },
     { href: '/register', icon: FileText, label: '등록' },
     { href: '/notices', icon: Bell, label: '공지' },
-    { href: '/qa', icon: MessageCircle, label: 'Q&A 묻고 답하기' },
+    { href: '/qa', icon: MessageCircle, label: 'Q&A' },
 ];
 
 export default function BottomNavBar() {

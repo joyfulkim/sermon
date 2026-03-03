@@ -17,6 +17,20 @@ export const metadata: Metadata = {
     title: '설교 세미나 2026 | 아브라함 쿠루빌라 교수',
     description: 'Christ-iconic 설교 세미나 - June 8-9, 선한목자교회',
     type: 'website',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: '설교 세미나 2026',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: '설교 세미나 2026 | 아브라함 쿠루빌라 교수',
+    description: 'Christ-iconic 설교 세미나 - June 8-9, 선한목자교회',
+    images: ['/og-image.png'],
   },
 };
 
