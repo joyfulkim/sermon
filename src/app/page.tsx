@@ -95,7 +95,9 @@ export default function HomePage() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
             <InfoRow icon={<CalendarDays size={18} />} label="날짜" value="2026년 6월 8~9일" />
             <InfoRow icon={<Clock size={18} />} label="시간" value="09:30 ~ 16:30" />
-            <InfoRow icon={<MapPin size={18} />} label="장소" value="선한목자교회 비전센터" />
+            <a href="https://naver.me/513beZZF" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+              <InfoRow icon={<MapPin size={18} />} label="장소" value="선한목자교회 비전센터" />
+            </a>
             <InfoRow icon={<Phone size={18} />} label="문의" value="031.634.1258" />
           </div>
         </div>

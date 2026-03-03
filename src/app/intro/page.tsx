@@ -129,7 +129,7 @@ export default function IntroPage() {
                 {/* Location & Organizers */}
                 <div style={{ padding: '32px 20px 0' }} className="fade-in-up fade-delay-3">
                     <div className="card-glass" style={{ padding: '20px', border: '1px solid rgba(59,130,246,0.2)', background: 'linear-gradient(135deg, rgba(15,23,42,0.6), rgba(30,58,138,0.2))' }}>
-                        <div style={{ display: 'flex', gap: '12px', alignItems: 'center', marginBottom: '16px' }}>
+                        <a href="https://naver.me/513beZZF" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', gap: '12px', alignItems: 'center', marginBottom: '16px' }}>
                             <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: 'rgba(59,130,246,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                 <MapPin size={18} color="var(--neon-blue)" />
                             </div>
@@ -137,7 +137,7 @@ export default function IntroPage() {
                                 <p style={{ fontSize: '15px', fontWeight: 800 }}>선한목자교회 비전센터</p>
                                 <p style={{ fontSize: '12px', color: 'var(--neon-blue)', marginTop: '2px', fontWeight: 500 }}>성남시 수정구 복정동 | 031.634.1258</p>
                             </div>
-                        </div>
+                        </a>
 
                         <div style={{ height: '1px', background: 'rgba(255,255,255,0.1)', margin: '16px 0' }} />
 
