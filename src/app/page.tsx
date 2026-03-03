@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { CalendarDays, MapPin, Phone, Clock, BookOpen, FileText, Image as ImageIcon, Video, Bell, MessageCircle, User } from 'lucide-react';
+import { CalendarDays, MapPin, Phone, Clock, BookOpen, FileText, Image as ImageIcon, Video, Bell, MessageCircle, User, Settings } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { useEffect, useState } from 'react';
 
