@@ -22,7 +22,7 @@ export default function Header({ title, showBack = false, showProfile = true, ri
                 <button className="header-back-btn" onClick={() => router.back()}>
                     <ChevronLeft size={24} />
                 </button>
-            ) : (
+            ) : !title && (
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                     <a href="https://www.bbts.ac.kr" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center' }}>
                         <img src="/logo.png" alt="Logo" style={{ height: '40px', width: 'auto' }} onError={(e) => {
@@ -36,7 +36,7 @@ export default function Header({ title, showBack = false, showProfile = true, ri
             )}
 
             {title && (
-                <h1 className="header-title" style={{ marginLeft: showBack ? '0' : '20px' }}>{title}</h1>
+                <h1 className="header-title" style={{ marginLeft: (showBack || !title) ? '20px' : '0' }}>{title}</h1>
             )}
 
             <nav className="show-on-desktop" style={{ display: 'flex', gap: '24px', marginLeft: '40px' }}>
