@@ -4,6 +4,7 @@ import { AuthProvider } from '@/context/AuthContext';
 import BottomNavBar from '@/components/layout/BottomNavBar';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://sermon-five.vercel.app'),
   title: '설교 세미나 2026 | 아브라함 쿠루빌라 교수',
   description: '그리스도의 형상을 따라가게 하는(Christ-iconic) 설교 - 문단(Pericope)을 중심으로 한 신학적 설교 세미나. June 8-9, 선한목자교회',
   keywords: '설교 세미나, 아브라함 쿠루빌라, 성서침례대학원대학교, 2026, bbts',
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/og-image.png',
+        url: '/og-thumbnail-v2.png',
         width: 1200,
         height: 630,
         alt: '설교 세미나 2026',
@@ -30,7 +31,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: '설교 세미나 2026 | 아브라함 쿠루빌라 교수',
     description: 'Christ-iconic 설교 세미나 - June 8-9, 선한목자교회',
-    images: ['/og-image.png'],
+    images: ['/og-thumbnail-v2.png'],
   },
 };
 
