@@ -34,7 +34,9 @@ export default function HomePage() {
         {/* Top nav area in hero */}
         <div style={{ position: 'absolute', top: 'calc(env(safe-area-inset-top, 20px) + 16px)', left: '20px', right: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', zIndex: 100 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <img src="/logo.png" alt="Logo" style={{ height: '65px', width: 'auto' }} />
+            <a href="https://www.bbts.ac.kr" target="_blank" rel="noopener noreferrer">
+              <img src="/logo.png" alt="Logo" style={{ height: '65px', width: 'auto' }} />
+            </a>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             {mounted && userProfile?.isAdmin && (
