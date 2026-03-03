@@ -35,7 +35,7 @@ export default function IntroPage() {
                             />
                         </div>
                         <div style={{ flex: 1 }}>
-                            <span className="badge badge-blue" style={{ marginBottom: '10px', display: 'inline-flex', letterSpacing: '0.5px' }}>KEYNOTE SPEAKER</span>
+                            <span className="badge badge-blue" style={{ marginBottom: '10px', display: 'inline-flex', letterSpacing: '0.5px' }}>MAIN SPEAKER</span>
                             <h2 style={{ fontSize: '20px', fontWeight: 800, letterSpacing: '-0.3px', marginBottom: '4px', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>아브라함 쿠루빌라 교수</h2>
                             <p style={{ fontSize: '14px', color: 'var(--neon-blue)', fontWeight: 600, letterSpacing: '0.5px' }}>Dr. Abraham Kuruvilla</p>
                             <div style={{ marginTop: '8px', display: 'flex', flexDirection: 'column', gap: '4px' }}>
