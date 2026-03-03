@@ -53,14 +53,16 @@ export default function Header({ title, showBack = false, showProfile = true, ri
                         background: 'rgba(37,99,235,0.3)',
                         backdropFilter: 'blur(10px)',
                         border: '1px solid rgba(59,130,246,0.3)',
-                        padding: '6px 12px',
-                        borderRadius: '20px',
+                        width: '32px',
+                        height: '32px',
+                        borderRadius: '10px',
                         color: 'white',
-                        fontSize: '11px',
-                        fontWeight: 800,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
                         textDecoration: 'none'
                     }}>
-                        관리자
+                        <Settings size={16} />
                     </Link>
                 )}
 

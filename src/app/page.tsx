@@ -40,7 +40,9 @@ export default function HomePage() {
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             {mounted && userProfile?.isAdmin && (
-              <Link href="/admin" style={{ background: 'rgba(37,99,235,0.4)', backdropFilter: 'blur(10px)', border: '1px solid rgba(59,130,246,0.3)', padding: '6px 14px', borderRadius: '20px', color: 'white', fontSize: '11px', fontWeight: 800, textDecoration: 'none' }}>관리자 모드</Link>
+              <Link href="/admin" style={{ background: 'rgba(37,99,235,0.4)', backdropFilter: 'blur(10px)', border: '1px solid rgba(59,130,246,0.3)', width: '36px', height: '36px', borderRadius: '12px', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', textDecoration: 'none', transition: 'var(--transition)' }}>
+                <Settings size={18} />
+              </Link>
             )}
             {mounted && (
               <Link href={user ? '/profile' : '/login'} style={{ background: 'rgba(255,255,255,0.08)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255,255,255,0.1)', padding: '6px 14px', borderRadius: '20px', color: 'rgba(255,255,255,0.9)', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12px', fontWeight: 600 }}>
