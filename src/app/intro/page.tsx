@@ -38,9 +38,24 @@ export default function IntroPage() {
                             <span className="badge badge-blue" style={{ marginBottom: '10px', display: 'inline-flex', letterSpacing: '0.5px' }}>KEYNOTE SPEAKER</span>
                             <h2 style={{ fontSize: '20px', fontWeight: 800, letterSpacing: '-0.3px', marginBottom: '4px', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>아브라함 쿠루빌라 교수</h2>
                             <p style={{ fontSize: '14px', color: 'var(--neon-blue)', fontWeight: 600, letterSpacing: '0.5px' }}>Dr. Abraham Kuruvilla</p>
-                            <p style={{ fontSize: '12px', color: 'var(--text-tertiary)', marginTop: '6px', lineHeight: 1.6 }}>
-                                Dallas Theological Seminary<br />설교학 교수 (Ph.D.)
-                            </p>
+                            <div style={{ marginTop: '8px', display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                                <div style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
+                                    <span style={{ fontSize: '11px', color: 'var(--neon-blue)', fontWeight: 700, whiteSpace: 'nowrap' }}>Th.M.</span>
+                                    <span style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>Dallas Theological Seminary</span>
+                                </div>
+                                <div style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
+                                    <span style={{ fontSize: '11px', color: 'var(--neon-blue)', fontWeight: 700, whiteSpace: 'nowrap' }}>Ph.D.</span>
+                                    <span style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>University of Aberdeen</span>
+                                </div>
+                                <div style={{ display: 'flex', gap: '8px', alignItems: 'flex-start', marginTop: '4px' }}>
+                                    <span style={{ width: '4px', height: '4px', borderRadius: '50%', background: 'rgba(255,255,255,0.3)', marginTop: '6px' }} />
+                                    <span style={{ fontSize: '11px', color: 'var(--text-tertiary)' }}>Dallas Theological Seminary 설교학 교수 역임</span>
+                                </div>
+                                <div style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
+                                    <span style={{ width: '4px', height: '4px', borderRadius: '50%', background: 'rgba(255,255,255,0.3)', marginTop: '6px' }} />
+                                    <span style={{ fontSize: '11px', color: 'var(--text-tertiary)' }}>Southern Baptist Theological Seminary 설교학 교수</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
