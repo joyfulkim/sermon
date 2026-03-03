@@ -34,7 +34,7 @@ export default function HomePage() {
         {/* Top nav area in hero */}
         <div style={{ position: 'absolute', top: 'calc(env(safe-area-inset-top, 20px) + 16px)', left: '20px', right: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', zIndex: 100 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <img src="/logo.png" alt="Logo" style={{ height: '50px', width: 'auto' }} />
+            <img src="/logo.png" alt="Logo" style={{ height: '65px', width: 'auto' }} />
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             {mounted && userProfile?.isAdmin && (
@@ -89,7 +89,7 @@ export default function HomePage() {
             <span style={{ fontSize: '13px', fontWeight: 700, color: 'var(--text-secondary)', letterSpacing: '0.5px' }}>SEMINAR INFO</span>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-            <InfoRow icon={<CalendarDays size={18} />} label="날짜" value="June 8-9, 2026" />
+            <InfoRow icon={<CalendarDays size={18} />} label="날짜" value="2026년 6월 8~9일" />
             <InfoRow icon={<Clock size={18} />} label="시간" value="09:30 ~ 16:30" />
             <InfoRow icon={<MapPin size={18} />} label="장소" value="선한목자교회 비전센터" />
             <InfoRow icon={<Phone size={18} />} label="문의" value="031.634.1258" />
@@ -197,7 +197,7 @@ function InfoRow({ icon, label, value }: { icon: React.ReactNode; label: string;
       </div>
       <div style={{ flex: 1 }}>
         <p style={{ fontSize: '11px', color: 'var(--text-tertiary)', marginBottom: '2px', fontWeight: 600 }}>{label}</p>
-        <p style={{ fontSize: '14px', fontWeight: 600, color: '#f8fafc' }}>{value}</p>
+        <p style={{ fontSize: '15px', fontWeight: 600, color: '#f8fafc' }}>{value}</p>
       </div>
     </div>
   );

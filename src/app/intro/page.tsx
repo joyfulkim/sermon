@@ -108,7 +108,7 @@ export default function IntroPage() {
                             <Calendar size={18} color="var(--neon-blue)" />
                             <h3 style={{ fontSize: '16px', fontWeight: 800 }}>타임 테이블</h3>
                         </div>
-                        <span className="badge badge-blue">June 8-9</span>
+                        <span className="badge badge-blue">6월 8~9일</span>
                     </div>
 
                     <div className="card-glass" style={{ padding: '12px', display: 'flex', flexDirection: 'column', gap: '2px', background: 'rgba(15,23,42,0.4)' }}>

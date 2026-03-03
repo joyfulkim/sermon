@@ -24,7 +24,7 @@ export default function Header({ title, showBack = false, showProfile = true, ri
                 </button>
             ) : (
                 <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <img src="/logo.png" alt="Logo" style={{ height: '28px', width: 'auto' }} onError={(e) => {
+                    <img src="/logo.png" alt="Logo" style={{ height: '40px', width: 'auto' }} onError={(e) => {
                         (e.target as HTMLImageElement).style.display = 'none';
                         const next = (e.target as HTMLImageElement).nextElementSibling as HTMLElement;
                         if (next) next.style.display = 'block';
