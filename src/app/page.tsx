@@ -8,6 +8,8 @@ import { useEffect, useState } from 'react';
 const quickLinks = [
   { href: '/intro', icon: BookOpen, label: '세미나 소개', color: '#60a5fa', desc: '아브라함 교수 집중조명' },
   { href: '/register', icon: FileText, label: '온라인 신청서', color: '#2dd4bf', desc: '지금 바로 등록하기' },
+  { href: '/videos', icon: Video, label: '홍보영상', color: '#a78bfa', desc: '세미나 관련 영상 시청' },
+  { href: '/photos', icon: ImageIcon, label: '사진앨범', color: '#fbbf24', desc: '생생한 현장 기록' },
   { href: '/notices', icon: Bell, label: '공지사항', color: '#f87171', desc: '최신 중요 안내' },
   { href: '/qa', icon: MessageCircle, label: 'Q&A 커뮤니티', color: '#38bdf8', desc: '자유로운 질문 답변' },
 ];
